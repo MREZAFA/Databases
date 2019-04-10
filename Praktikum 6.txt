@@ -1,0 +1,33 @@
+1. Aplikasikan CONSTRAINT pada semua table yang berelasi.
+
+2. Ubah mode menjadi ON UPDATE CASCADE ON DELETE RESTRICT
+	alter table departemen
+     	add foreign key fk_perusahaan(id_p)
+     	references perusahaan(id_p)
+     	ON UPDATE CASCADE ON DELETE RESTRICT;
+
+3. Lakukan perubahan data pada table perusahaan (id_p)
+	update perusahaan set nama ='Cabang Cikarang' where id_p ='P02';
+
+4. Lakukan penghapusan data pada table perusahaan
+	delete from perusahaan where id_p ='P02';
+
+Jika gagal drop foreign key dengan perintah 
+	alter table departemen drop foreign key fk_perusahaan;
+
+Setelah itu kita menonaktifkan kendala foreign key, karena data yang di relasikan ada yang hilang/ terhapus. dengan perintah
+	SET FOREIGN_KEY_CHECKS = 0; ALTER TABLE departemen ADD FOREIGN KEY (id_p) REFERENCES perusahaan(id_p);
+
+5. Ubah mode menjadi ON UPDATE CASCADE ON DELETE SET NULL 
+	alter table departemen
+    	add foreign key fk_perusahaan(id_p)
+    	references perusahaan(id_p)
+    	ON UPDATE CASCADE ON DELETE SET NULL;
+6. Lakukan penghapusan data pada table perusahaan
+	delete from perusahaan where id_p ='P01';
+
+7. Berikan kesimpulan anda perbedaan antara CASCADE , RESTRICT , dan SET NULL?
+	Cascade = apabila id pada table A dihapus maka table B juga ikut terhapus
+	Restrict = apabila id pada table A ingin dihapus maka tidak diperbolehkan jika di table B ditemukan ID yang berelasi
+	SET NULL = apabila id pada table A dihapus maka table B di set null
+	

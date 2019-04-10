@@ -1,0 +1,11 @@
+QUERY JOIN SQL
+ 
+select mobil.kode, mobil.jenis, mobil.merek, sewa.idsewa, sewa.tglsewa, sewa.lamasewa from mobil left join sewa on mobil.kode=sewa.kode order by mobil.kode asc;
+
+OR
+
+select sewa.idsewa, pelanggan.nama, sewa.tglsewa, mobil.jenis, mobil.merek, sewa.lamasewa, sewa.uangmuka from sewa left join mobil on mobil.kode=sewa.kode left join pelanggan on pelanggan.kode=sewa.kodepelanggan;
+
+
+
+
